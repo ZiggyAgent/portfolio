@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tal — Projects</title>
+<meta name="description" content="Products I've designed and shipped with AI coding agents: what each one does, the decisions behind it, and live links.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f6;
+    --surface: #ffffff;
+    --text: #1c1b19;
+    --muted: #615e57;
+    --faint: #8f8b82;
+    --line: #e7e4dc;
+    --accent: #2f5d50;
+    --accent-soft: #e6efeb;
+    --chip: #f1efe9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141413; --surface: #1c1c1a; --text: #ecebe6; --muted: #aaa69c;
+      --faint: #7d7a72; --line: #2e2d2a; --accent: #8cc2b1; --accent-soft: #1f2e29; --chip: #262522;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141413; --surface: #1c1c1a; --text: #ecebe6; --muted: #aaa69c;
+    --faint: #7d7a72; --line: #2e2d2a; --accent: #8cc2b1; --accent-soft: #1f2e29; --chip: #262522;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.6 Inter, system-ui, -apple-system, sans-serif;
+  }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 64px 16px 80px; }
+  header h1 {
+    font-family: Newsreader, Georgia, serif; font-weight: 600;
+    font-size: clamp(34px, 6vw, 46px); line-height: 1.1; margin: 0 0 14px; letter-spacing: -0.01em;
+  }
+  .lede { font-size: 18px; color: var(--muted); margin: 0 0 22px; max-width: 620px; }
+  .how {
+    background: var(--accent-soft); border-radius: 12px; padding: 18px 20px; margin: 0 0 48px;
+    font-size: 15px; color: var(--text);
+  }
+  .how strong { display: block; margin-bottom: 6px; }
+  .how ul { margin: 0; padding-left: 18px; }
+  .how li { margin: 3px 0; }
+  h2.section {
+    font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--faint);
+    font-weight: 600; margin: 0 0 16px;
+  }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    padding: 26px 24px; margin: 0 0 20px;
+  }
+  .card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .card h3 { font-family: Newsreader, Georgia, serif; font-size: 26px; font-weight: 600; margin: 0; }
+  .meta { font-size: 13px; color: var(--faint); }
+  .tagline { font-weight: 500; margin: 6px 0 12px; }
+  .card p { margin: 0 0 12px; color: var(--muted); }
+  .card ul.points { margin: 0 0 14px; padding-left: 18px; color: var(--muted); }
+  .card ul.points li { margin: 4px 0; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 14px 0 4px; font-size: 15px; font-weight: 500; }
+  .links .private { color: var(--faint); font-weight: 400; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; }
+  .chip { background: var(--chip); color: var(--muted); font-size: 12.5px; padding: 3px 9px; border-radius: 999px; }
+  details { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 12px; }
+  summary {
+    cursor: pointer; font-size: 14px; font-weight: 600; color: var(--accent); list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "+ "; }
+  details[open] summary::before { content: "− "; }
+  details ul { margin: 10px 0 0; padding-left: 18px; font-size: 15px; color: var(--muted); }
+  details li { margin: 6px 0; }
+  .sub { margin: 14px 0 0; padding: 14px 16px; border-radius: 10px; background: var(--bg); }
+  .sub h4 { margin: 0 0 4px; font-size: 16px; }
+  .sub p { margin: 0 0 6px; font-size: 15px; }
+  .sub .links { margin: 6px 0 0; font-size: 14px; }
+  footer { margin-top: 48px; font-size: 14px; color: var(--faint); }
+  @media (max-width: 520px) {
+    .wrap { padding-top: 40px; }
+    .card { padding: 22px 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Tal — things I've built</h1>
+  <p class="lede">Products I designed and shipped in 2026, working with AI coding agents. I chose the problems, set the product and design calls, and steered the agents through each build. Every project below is live.</p>
+  <div class="how">
+    <strong>How I build</strong>
+    <ul>
+      <li>I start from a real user, usually my own family or me, and write the product rules before any code.</li>
+      <li>I use AI agents (mainly Claude Code) for implementation and check their work against the product, not just whether it compiles.</li>
+      <li>I keep running costs near $0 with free tiers, server-side rules and AI only where it adds value.</li>
+    </ul>
+  </div>
+</header>
+
+<h2 class="section">Projects</h2>
+
+<!-- Marginalia -->
+<article class="card">
+  <div class="card-head">
+    <h3>Marginalia</h3>
+    <span class="meta">May 2026 – now · 116 commits</span>
+  </div>
+  <p class="tagline">An AI reading companion that brings your book highlights back when they matter.</p>
+  <p>Kindle highlights pile up and are never seen again. Marginalia imports them, finds the themes running across your whole library, and turns them into something you return to.</p>
+  <ul class="points">
+    <li>Imports Kindle clippings, removes duplicates, and groups books into AI-discovered themes</li>
+    <li>For each theme, writes a synthesis: why it resonates, where to go deeper, how to use it in practice</li>
+    <li>Book recommendations based on your reading patterns, plus a weekly email digest of highlights</li>
+    <li>Saves highlights from the web through a bookmarklet, and has an API that my AI assistants use to save quotes for me</li>
+  </ul>
+  <div class="links">
+    <a href="https://getmarginalia.fyi">getmarginalia.fyi ↗</a>
+    <span class="private">Private repo</span>
+  </div>
+  <div class="chips"><span class="chip">Next.js</span><span class="chip">Supabase + row-level security</span><span class="chip">Gemini</span><span class="chip">Vercel</span></div>
+  <details>
+    <summary>How it was built</summary>
+    <ul>
+      <li><b>Reliability on free models.</b> I set up a four-model fallback chain so the AI features keep working when a free model is rate-limited or retired.</li>
+      <li><b>Cached synthesis.</b> Theme write-ups are generated once and stored, not regenerated on every visit. That keeps pages fast and the cost near zero.</li>
+      <li><b>Root-causing an outage.</b> The free database kept pausing even though a keep-alive job was running. The agent's first theory was wrong. The real cause was how often the job pinged, and I fixed it based on the provider's documented rule.</li>
+    </ul>
+  </details>
+</article>
+
+<!-- Kids Arcade -->
+<article class="card">
+  <div class="card-head">
+    <h3>Kids Learning Arcade</h3>
+    <span class="meta">Apr 2026 – now · 3 games</span>
+  </div>
+  <p class="tagline">Learning games for my own kids, on a shared platform with accounts, leaderboards and progress tracking.</p>
+  <p>All the games run on one shared backend with a separate database schema per game. Scoring and mastery rules run on the server, so kids can't game the leaderboard. Hosting is free.</p>
+
+  <div class="sub">
+    <h4>SpellMaster</h4>
+    <p>Words are read aloud, grades 1–12. It spots the spelling patterns a child keeps getting wrong and recommends a lesson built around their own missed words. That runs on 28 pattern detectors, with no AI cost.</p>
+    <div class="links"><a href="https://ziggyagent.github.io/SpellMaster/">Play ↗</a><a href="https://github.com/ZiggyAgent/SpellMaster">Code</a></div>
+  </div>
+  <div class="sub">
+    <h4>MathMaster</h4>
+    <p>Mastery-based math aligned to the 2023 New Jersey standards: 89 topics across grades 1–8. Practice → next-day review → mastered, then a grade quiz to level up. Grades 1 and 5 are fully written (my kids' grades); the rest are mapped.</p>
+    <div class="links"><a href="https://ziggyagent.github.io/MathMaster/">Play ↗</a><a href="https://github.com/ZiggyAgent/MathMaster">Code</a></div>
+  </div>
+  <div class="sub">
+    <h4>Capital City Globe</h4>
+    <p>A 3D globe game for learning the capitals of countries and US states, with a top-10 leaderboard.</p>
+    <div class="links"><a href="https://ziggyagent.github.io/CapitalCityGlobeGame/">Play ↗</a><a href="https://github.com/ZiggyAgent/CapitalCityGlobeGame">Code</a></div>
+  </div>
+
+  <div class="chips"><span class="chip">Vanilla JS</span><span class="chip">Supabase (schema per game)</span><span class="chip">GitHub Pages</span><span class="chip">GitHub Actions</span></div>
+  <details>
+    <summary>How it was built</summary>
+    <ul>
+      <li><b>A platform, not one-offs.</b> After the first game I had the agent write a playbook (accounts, schema conventions, scoring RPCs), so each new game starts from the same base.</li>
+      <li><b>Testing at volume.</b> Math questions are generated fresh each time, so I had a test harness run 300 generations per topic and recompute every answer independently before shipping.</li>
+      <li><b>Product calls from playtesting.</b> I set the mastery thresholds and the next-day review timing, and I collect feedback from my kids to decide what comes next.</li>
+      <li><b>Failures that announce themselves.</b> A daily watchdog emails me if the backend keep-alive goes quiet, days before anything would break for the kids.</li>
+    </ul>
+  </details>
+</article>
+
+<!-- MoneyMaster -->
+<article class="card">
+  <div class="card-head">
+    <h3>MoneyMaster</h3>
+    <span class="meta">Jun – Jul 2026 · 31 commits</span>
+  </div>
+  <p class="tagline">A "Duolingo for money" game for ages 11–14: run a small business, save, invest, and stay happy doing it.</p>
+  <p>Most money games reward hoarding. In MoneyMaster, spending on fun is necessary but has diminishing returns. Your score is the geometric mean of wealth and happiness, so both the miser and the splurger lose.</p>
+  <ul class="points">
+    <li>A 14-day season: you run a collectibles shop (the game's own "Moodlings" characters), set prices, and react to events</li>
+    <li>Market, sector and company news teach diversification hands-on: an ETF smooths out a single company's shock</li>
+    <li>Short teachable-moment cards appear exactly when a concept comes up in play</li>
+  </ul>
+  <div class="links">
+    <a href="https://moneymaster-three.vercel.app">Play ↗</a>
+    <span class="private">Private repo</span>
+  </div>
+  <div class="chips"><span class="chip">Vanilla JS PWA</span><span class="chip">Deterministic game engine</span><span class="chip">Supabase</span><span class="chip">Vercel</span></div>
+  <details>
+    <summary>How it was built</summary>
+    <ul>
+      <li><b>Model the economy before writing code.</b> I built the whole season as a live spreadsheet and simulated three player types. The balanced player wins, the hoarder and the splurger lose, and I confirmed that before any game code existed.</li>
+      <li><b>Design separate from mechanics.</b> I made the brand and visual system with an AI design tool and kept the game-design doc as the source of truth for the rules.</li>
+      <li><b>Parallel agents.</b> I split the build into waves for parallel agents (engine, content, backend, then screens), with a full play-through check after each wave.</li>
+    </ul>
+  </details>
+</article>
+
+<!-- Nexus -->
+<article class="card">
+  <div class="card-head">
+    <h3>Nexus</h3>
+    <span class="meta">Nov 2026 · in progress</span>
+  </div>
+  <p class="tagline">One AI workspace for every model, with threads synced across devices and usage you can see.</p>
+  <p>I use many AI models and wanted one place for all of them. Phase 1 has streaming chat on free models, synced threads, a usage ledger, a phone layout, and a settings screen that already shows every planned capability.</p>
+  <div class="links">
+    <a href="https://nexus-ziggyagent-org.vercel.app">Open ↗</a>
+    <span class="private">Private repo · sign-in required</span>
+  </div>
+  <div class="chips"><span class="chip">Next.js</span><span class="chip">AI SDK + OpenRouter</span><span class="chip">Supabase</span><span class="chip">Vercel</span></div>
+  <details>
+    <summary>How it was built</summary>
+    <ul>
+      <li><b>Roadmap visible in the product.</b> A capability registry shows each future feature as locked and labeled by phase. Unlocking one is a one-line change.</li>
+      <li><b>A five-phase plan up front:</b> workspace → bring-your-own-key routing and budgets → files and tools → a desktop agent → opening it to others. The database already reserves room for the later phases.</li>
+      <li><b>Prototype first.</b> I clicked through a prototype before building, then shipped Phase 1 in about two days.</li>
+    </ul>
+  </details>
+</article>
+
+<footer>
+  Built with Claude Code, like everything above. Last updated November 2026.
+</footer>
+
+</div>
+</body>
+</html>
