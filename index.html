@@ -70,6 +70,11 @@
   .card ul.points li { margin: 4px 0; }
   .links { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 14px 0 4px; font-size: 15px; font-weight: 500; }
   .links .private { color: var(--faint); font-weight: 400; }
+  .badge {
+    font-family: Inter, system-ui, sans-serif; font-size: 12px; font-weight: 600; vertical-align: middle;
+    color: var(--muted); border: 1px solid var(--line); background: var(--chip);
+    padding: 2px 8px; border-radius: 999px; margin-left: 6px; position: relative; top: -3px;
+  }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; }
   .chip { background: var(--chip); color: var(--muted); font-size: 12.5px; padding: 3px 9px; border-radius: 999px; }
   details { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 12px; }
@@ -98,7 +103,7 @@
 <header>
   <h1>Tal Hayat</h1>
   <p class="contact"><a href="https://www.linkedin.com/in/talhayat/">LinkedIn ↗</a></p>
-  <p class="lede">Products I designed and shipped in 2026, working with AI coding agents. I chose the problems, set the product and design calls, and steered the agents through each build. Every project below is live.</p>
+  <p class="lede">Products I designed and shipped in 2026, working with AI coding agents. I chose the problems, set the product and design calls, and steered the agents through each build. Everything below is live, except one private tool that runs only on my laptop.</p>
   <div class="how">
     <strong>How I build</strong>
     <ul>
@@ -136,6 +141,35 @@
       <li><b>Reliability on free models.</b> I set up a four-model fallback chain so the AI features keep working when a free model is rate-limited or retired.</li>
       <li><b>Cached synthesis.</b> Theme write-ups are generated once and stored, not regenerated on every visit. That keeps pages fast and the cost near zero.</li>
       <li><b>Root-causing an outage.</b> The free database kept pausing even though a keep-alive job was running. The agent's first theory was wrong. The real cause was how often the job pinged, and I fixed it based on the provider's documented rule.</li>
+    </ul>
+  </details>
+</article>
+
+<!-- Themefolio -->
+<article class="card">
+  <div class="card-head">
+    <h3>Themefolio <span class="badge">Private</span></h3>
+    <span class="meta">May – Oct 2026 · 93 commits</span>
+  </div>
+  <p class="tagline">Investment decision support for a thematic investor: where am I, what changed, and what would prove me wrong?</p>
+  <p>Brokerages organize by account and asset class. I invest by theme (AI ecosystem, space, international tech), and no tool spoke that language. Themefolio stores my own investment theses as data and checks my portfolio against them every day.</p>
+  <ul class="points">
+    <li>Allocation vs. target for each of 15 themes, weighted correctly when a stock belongs to several</li>
+    <li>A "Front Burner" that shows at most two items needing attention, and nothing when nothing does</li>
+    <li>Thesis Defense: falsifiable triggers with pre-committed actions, written before the market moves</li>
+    <li>A Signal Scorecard that grades every recommendation against the S&amp;P 500 at 7, 30 and 90 days</li>
+  </ul>
+  <div class="links">
+    <span class="private">Private project · runs locally, so financial data never leaves my laptop</span>
+  </div>
+  <div class="chips"><span class="chip">Next.js</span><span class="chip">SQLite, local-first</span><span class="chip">Claude + Gemini</span><span class="chip">Market and macro data APIs</span></div>
+  <details>
+    <summary>How it was built</summary>
+    <ul>
+      <li><b>AI comments, code computes.</b> Every number on screen comes from deterministic code. The AI gets only those precomputed numbers and writes judgment, so it can't invent a figure.</li>
+      <li><b>Local-first on purpose.</b> No server, no cloud database, no accounts. The threat model is simply that financial data never leaves the disk.</li>
+      <li><b>Auditing the live system, not just the code.</b> I had the agent check the live database against the code. That surfaced three failures the app had been hiding, including a broken primary AI path that silently fell back to a backup model. Takeaway: the app surfaced portfolio drift well but was blind to its own.</li>
+      <li><b>Evals for grounded advice.</b> I designed an eval suite that checks the numbers are right and the AI's advice is grounded in them. Writing it caught a unit bug that told the model a gross margin was 8,194%.</li>
     </ul>
   </details>
 </article>
